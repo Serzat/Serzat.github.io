@@ -15,6 +15,7 @@
          initial-scale=1.0 sets the initial zoom level to 100%. -->
 
     <title>Serzat Karaman</title>
+    
 </head>
 
 <body> <!-- Contains all visible content displayed to the user -->
@@ -50,6 +51,29 @@
             <h2>Who Am I</h2> <!-- Subheading for this section -->
             <p>Welcome to my portfolio website! I am a Software Engineering student building responsive web applications</p>
         </section>
+
+        <!-- ======================================================================= -->
+        <!-- OPDRACHT: Semantische HTML Video sectie                                 -->
+        <!-- ======================================================================= -->
+        <article id="video-opdracht">
+            <header>
+                <h2>Semantische HTML Opdracht</h2>
+            </header>
+            
+            <p>Hier is de Fireship-video met een fallback-mechanisme:</p>
+
+            <video width="640" height="360" controls>
+                <!-- Primaire bron: Fireship video -->
+                <source src="fireship-video.mp4" type="video/mp4">
+                
+                <!-- Fallback bron: Als de eerste faalt, speelt deze af -->
+                <source src="fallback-video.mp4" type="video/mp4">
+                
+                <!-- Fallback tekst voor niet-ondersteunde browsers -->
+                Je browser ondersteunt de videotag niet.
+            </video>
+        </article>
+
     </main>
 
     <!-- ======================================================================= -->
