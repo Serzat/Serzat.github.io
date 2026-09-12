@@ -16,37 +16,6 @@
 
     <title>Serzat Karaman</title>
     
-    <!-- ========================================================= -->
-    <!-- NEW: CSS Stilleri (Flexbox ödevi için eklendi)            -->
-    <!-- ========================================================= -->
-    <style>
-        /* Mor başlık tasarımı (Görseldeki gibi) */
-        .flexbox-header {
-            background-color: #800080; 
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 40px; /* Video ile arasına biraz daha boşluk bıraktım */
-        }
-
-        /* FLEXBOX BURADA BAŞLIYOR */
-        .card-container {
-            display: flex; /* Kartları yan yana dizer */
-            justify-content: flex-start; /* Sola hizalar */
-            align-items: stretch; /* Kartların boylarının eşit olmasını sağlar */
-            gap: 20px; /* Kartlar arasına boşluk bırakır */
-            margin-top: 15px;
-            flex-wrap: wrap; /* Ekran küçülünce kartların alt satıra geçmesine izin verir */
-        }
-
-        /* Camgöbeği (Cyan) kart tasarımı (Görseldeki gibi) */
-        .card {
-            background-color: #00FFFF; 
-            padding: 20px;
-            flex: 1; /* Tüm kartların eşit genişlikte olmasını sağlar */
-            min-width: 200px; /* Sayfa küçülünce çok fazla daralmamaları için sınır */
-        }
-    </style>
 </head>
 
 <body> <!-- Contains all visible content displayed to the user -->
@@ -81,55 +50,6 @@
         <section id="whoami">
             <h2>Who Am I</h2> <!-- Subheading for this section -->
             <p>Welcome to my portfolio website! I am a Software Engineering student building responsive web applications</p>
-        </section>
-
-        <!-- ======================================================================= -->
-        <!-- OPDRACHT: Semantische HTML Video sectie                                 -->
-        <!-- ======================================================================= -->
-        <article id="video-opdracht">
-            <header>
-                <h2>Semantische HTML Opdracht</h2>
-            </header>
-            
-            <p>Hier is de Fireship-video met een fallback-mechanisme:</p>
-
-            <video width="640" height="360" controls>
-                <!-- Primaire bron: Fireship video -->
-                <source src="videos/fireship-video.mp4">
-                
-                <!-- Fallback bron: Als de eerste faalt, speelt deze af -->
-                <source src="videos/fallback-video.mp4">
-                
-                <!-- Fallback tekst voor niet-ondersteunde browsers -->
-                Je browser ondersteunt de videotag niet
-            </video>
-        </article>
-
-        <!-- ======================================================================= -->
-        <!-- OPDRACHT: CSS-fundamentals Flexbox sectie                               -->
-        <!-- ======================================================================= -->
-        <section id="flexbox-opdracht">
-            <header class="flexbox-header">
-                <h2>Sample flexbox example</h2>
-            </header>
-            
-            <!-- Bu div bizim esnek Flexbox kutumuz olacak -->
-            <div class="card-container">
-                <article class="card">
-                    <h3>First article</h3>
-                    <p>Content...</p>
-                </article>
-                
-                <article class="card">
-                    <h3>Second article</h3>
-                    <p>Content...</p>
-                </article>
-                
-                <article class="card">
-                    <h3>Third article</h3>
-                    <p>Content...</p>
-                </article>
-            </div>
         </section>
 
     </main>
