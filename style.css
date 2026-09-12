@@ -41,6 +41,11 @@ nav a {
     color: white;
 }
 
+/* Changes the navigation link when the mouse is over it */
+nav a:hover {
+    color: #cccccc;
+}
+
 /* Main content */
 main {
     padding: 30px;
