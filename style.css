@@ -16,6 +16,10 @@ header {
     background-color: #243f73;
     color: white;
     padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Main title */
@@ -26,13 +30,14 @@ header h1 {
 /* Navigation */
 nav ul {
     display: flex;
-    margin: 20px 0 0 0;
+    margin: 0;
     padding: 0;
 }
 
 /* Navigation items */
 nav li {
     margin-right: 25px;
+    list-style: none;
 }
 
 /* Navigation links */
