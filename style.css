@@ -1,0 +1,65 @@
+/* Makes width and height easier to control */
+* {
+    box-sizing: border-box;
+}
+
+/* General page styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: #222222;
+}
+
+/* Header */
+header {
+    background-color: #243f73;
+    color: white;
+    padding: 20px;
+}
+
+/* Main title */
+header h1 {
+    margin: 0;
+}
+
+/* Navigation */
+nav ul {
+    display: flex;
+    margin: 20px 0 0 0;
+    padding: 0;
+}
+
+/* Navigation items */
+nav li {
+    margin-right: 25px;
+}
+
+/* Navigation links */
+nav a {
+    color: white;
+}
+
+/* Main content */
+main {
+    padding: 30px;
+}
+
+/* Sections */
+section {
+    padding: 20px;
+}
+
+/* Project and blog articles */
+article {
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 1px solid #cccccc;
+}
+
+/* Footer */
+footer {
+    background-color: #243f73;
+    color: white;
+    padding: 20px;
+}
