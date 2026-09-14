@@ -2,6 +2,7 @@ const projecten = [
     {
         naam: "Online Veiling Systeem",
         periode: "september 2025 - januari 2026",
+        sorteerWaarde: 202601,
         beschrijving:
             "Ik heb meegewerkt aan de basisarchitectuur van het project door UML-klassendiagrammen te maken en relaties tussen entiteiten te analyseren. Daarnaast heb ik een front-end dashboard ontworpen en gerealiseerd voor de online veilingwebsite.",
         technieken: [
@@ -13,6 +14,7 @@ const projecten = [
     {
         naam: "Data Engineering & AI",
         periode: "februari 2026 - maart 2026",
+        sorteerWaarde: 202603,
         beschrijving:
             "Ik heb relationele modellen en sterschema's gemaakt voor een datawarehouse. Daarnaast heb ik ETL-pijplijnen opgezet om de datastroom te beheren en machine-learningmodellen ontwikkeld en getest met Python.",
         technieken: [
@@ -25,6 +27,7 @@ const projecten = [
     {
         naam: "Lumi Lamp - Embedded Systems & Software",
         periode: "afgerond in januari 2025",
+        sorteerWaarde: 202501,
         beschrijving:
             "Binnen dit project was mijn taak het programmeren van de tijdweergave en het alarmsysteem op de MicroBit. Samen met mijn team hebben we een slimme slaaplamp en wekker ontwikkeld met twee MicroBits en een Java-desktopapplicatie. Het systeem kon onder andere licht, temperatuur en achtergrondgeluid meten.",
         technieken: [
@@ -36,9 +39,13 @@ const projecten = [
     }
 ];
 
+
 function renderProjecten(projectenLijst) {
 
     const projectLijst = document.querySelector("#project-list");
+
+    // Verwijdert de huidige projecten voordat de lijst opnieuw wordt getoond
+    projectLijst.innerHTML = "";
 
     projectenLijst.forEach((project) => {
 
@@ -75,5 +82,29 @@ function renderProjecten(projectenLijst) {
         projectLijst.appendChild(article);
     });
 }
+
+
+function sorteerNieuwsteEerst() {
+
+    projecten.sort((a, b) => b.sorteerWaarde - a.sorteerWaarde);
+
+    renderProjecten(projecten);
+}
+
+
+function sorteerOudsteEerst() {
+
+    projecten.sort((a, b) => a.sorteerWaarde - b.sorteerWaarde);
+
+    renderProjecten(projecten);
+}
+
+
+const nieuwsteKnop = document.querySelector("#nieuwste-eerst");
+const oudsteKnop = document.querySelector("#oudste-eerst");
+
+nieuwsteKnop.addEventListener("click", sorteerNieuwsteEerst);
+oudsteKnop.addEventListener("click", sorteerOudsteEerst);
+
 
 renderProjecten(projecten);
