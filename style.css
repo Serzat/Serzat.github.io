@@ -1,9 +1,9 @@
-/* Makes width and height easier to control */
+/* Zorgt ervoor dat padding en border binnen de opgegeven breedte en hoogte blijven */
 * {
     box-sizing: border-box;
 }
 
-/* General page styling */
+/* Algemene opmaak van de pagina */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -22,65 +22,88 @@ header {
     align-items: center;
 }
 
-/* Header content */
+/* Linkerkant van de header met naam en navigatie */
 .header-content {
     padding: 0;
 }
 
-/* Main title */
+/* Hoofdtitel */
 header h1 {
     margin: 0;
 }
 
-/* Profile photo */
+/* Kleine profielfoto op Projecten en Blog */
 .profile-photo {
     width: 90px;
     height: 90px;
 }
 
-/* Main title */
-header h1 {
-    margin: 0;
-}
-
-/* Navigation */
+/* Navigatie */
 nav ul {
     display: flex;
     margin: 20px 0 0 0;
     padding: 0;
 }
 
-/* Navigation items */
+/* Navigatie-items */
 nav li {
     margin-right: 25px;
     list-style: none;
 }
 
-/* Navigation links */
+/* Navigatielinks */
 nav a {
     color: white;
 }
 
-/* Changes the navigation link when the mouse is over it */
+/* Verandert de kleur wanneer de muis over een navigatielink beweegt */
 nav a:hover {
     color: #cccccc;
 }
 
-/* Main content */
+/* Hoofdinhoud */
 main {
     padding: 30px;
 }
 
-/* Sections */
+/* Secties */
 section {
     padding: 20px;
 }
 
-/* Project and blog articles */
+/* Who Am I layout */
+#whoami {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Tekstgedeelte van Who Am I */
+.whoami-text {
+    border: none;
+    margin: 0;
+    padding: 0;
+    max-width: 75%;
+}
+
+/* Grotere profielfoto op Who Am I */
+.whoami-photo {
+    width: 180px;
+    height: auto;
+    max-width: 25%;
+    margin-left: 40px;
+}
+
+/* Artikelen op de Projecten- en Blogpagina */
 article {
     margin-bottom: 25px;
     padding: 20px;
     border: 1px solid #cccccc;
+}
+
+/* Zorgt ervoor dat het Who Am I-artikel geen rand krijgt */
+.whoami-text {
+    border: none;
 }
 
 /* Footer */
