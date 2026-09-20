@@ -16,6 +16,26 @@ header {
     background-color: #243f73;
     color: white;
     padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Header content */
+.header-content {
+    padding: 0;
+}
+
+/* Main title */
+header h1 {
+    margin: 0;
+}
+
+/* Profile photo */
+.profile-photo {
+    width: 90px;
+    height: 90px;
 }
 
 /* Main title */
