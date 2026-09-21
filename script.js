@@ -9,7 +9,8 @@ const projecten = [
             "UML-klassendiagrammen",
             "HTML en CSS",
             "GitHub"
-        ]
+        ],
+        github: "https://github.com/ChillTick/HHS-K4-G4-WebProject"
     },
     {
         naam: "Data Engineering & AI",
@@ -22,7 +23,8 @@ const projecten = [
             "Relationele modellen",
             "Sterschema's",
             "ETL-pijplijnen"
-        ]
+        ],
+        github: "https://github.com/garrickLos/GreatOutdoors-HHS-klas3-groep4"
     },
     {
         naam: "Lumi Lamp - Embedded Systems & Software",
@@ -35,7 +37,8 @@ const projecten = [
             "Java",
             "Python",
             "SQLite"
-        ]
+        ],
+        github: "https://github.com/ChillTick/Lumi"
     }
 ];
 
