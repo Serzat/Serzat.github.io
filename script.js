@@ -82,6 +82,11 @@ function renderProjecten(projectenLijst) {
 
         article.appendChild(techniekenLijst);
 
+        const githubLink = document.createElement("a");
+        githubLink.textContent = "GitHub link";
+        githubLink.href = project.github;
+        article.appendChild(githubLink);
+
         projectLijst.appendChild(article);
     });
 }
