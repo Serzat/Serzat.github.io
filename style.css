@@ -108,6 +108,44 @@ article {
     border: none;
 }
 
+/* Contactformulier */
+#contact-form {
+    max-width: 500px;
+}
+
+#contact-form label {
+    display: block;
+    margin-top: 15px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+#contact-form textarea {
+    min-height: 120px;
+}
+
+#contact-form button {
+    display: block;
+    margin-top: 15px;
+    padding: 8px 15px;
+}
+
+#contact-form span {
+    display: block;
+    margin-top: 5px;
+}
+
+#form-status {
+    margin-top: 15px;
+}
+
 /* Footer */
 footer {
     background-color: #243f73;
