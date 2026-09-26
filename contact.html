@@ -1,0 +1,179 @@
+<!DOCTYPE html> <!-- Tells the browser that this document uses HTML5 -->
+
+<html lang="nl"> <!-- Starts the HTML document and defines the page language as Dutch -->
+
+<head> <!-- Contains information about the webpage that is not directly visible -->
+
+    <meta charset="UTF-8"> <!-- Allows the page to display different characters correctly -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Makes the page adapt correctly to different screen sizes -->
+
+    <title>Serzat Karaman - Contact</title> <!-- Sets the title shown in the browser tab -->
+
+    <link rel="stylesheet" href="style.css">
+    <!-- Connects this page to the external CSS file -->
+
+</head> <!-- Ends the head section -->
+
+
+<body> <!-- Contains all visible content of the webpage -->
+
+
+    <header> <!-- Contains the website name, navigation and profile photo -->
+
+        <section class="header-content">
+        <!-- Groups the website name and navigation together -->
+
+            <h1>Serzat Karaman</h1>
+            <!-- Main title of the website -->
+
+
+            <nav aria-label="Main Navigation">
+            <!-- Contains the navigation links between the pages -->
+
+                <ul> <!-- Creates an unordered list for the navigation -->
+
+                    <li><a href="index.html">Who Am I</a></li>
+                    <!-- Link to the Who Am I page -->
+
+                    <li><a href="projecten.html">Projecten</a></li>
+                    <!-- Link to the Projecten page -->
+
+                    <li><a href="blog.html">Blog</a></li>
+                    <!-- Link to the Blog page -->
+
+                    <li><a href="contact.html">Contact</a></li>
+                    <!-- Link to the Contact page -->
+
+                </ul> <!-- Ends the navigation list -->
+
+            </nav> <!-- Ends the navigation -->
+
+        </section> <!-- Ends the left part of the header -->
+
+
+        <img
+            class="profile-photo"
+            src="images/profielfoto.jpg"
+            alt="Foto van Serzat Karaman"
+        >
+        <!-- Displays the profile photo on the right side of the header -->
+
+    </header> <!-- Ends the header -->
+
+
+    <main> <!-- Contains the main content of this page -->
+
+
+        <section id="contact">
+        <!-- Groups all contact form content together -->
+
+            <h2>Contact</h2>
+            <!-- Heading of the contact section -->
+
+            <p>
+                Via dit formulier kun je contact met mij opnemen.
+            </p>
+            <!-- Short explanation for the user -->
+
+
+            <form id="contact-form" novalidate>
+            <!-- Creates the contact form -->
+            <!-- novalidate prevents the browser's default error popups so we can show our own messages -->
+
+
+                <label for="naam">Naam</label>
+                <!-- Label connected to the name input -->
+
+                <input
+                    type="text"
+                    id="naam"
+                    name="naam"
+                    required
+                    minlength="2"
+                    aria-describedby="naam-error"
+                    aria-invalid="false"
+                >
+                <!-- Text field for the user's name -->
+                <!-- required means the field cannot be empty -->
+                <!-- minlength requires at least 2 characters -->
+                <!-- aria-describedby connects the input to its error message -->
+                <!-- aria-invalid tells assistive technology if the field contains an error -->
+
+                <span id="naam-error" role="alert"></span>
+                <!-- Shows an accessible error message for the name field -->
+
+
+                <label for="email">E-mail</label>
+                <!-- Label connected to the email input -->
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    aria-describedby="email-error"
+                    aria-invalid="false"
+                >
+                <!-- Input field for the user's email address -->
+                <!-- type="email" lets the browser check if the email format is valid -->
+                <!-- required means the field cannot be empty -->
+
+                <span id="email-error" role="alert"></span>
+                <!-- Shows an accessible error message for the email field -->
+
+
+                <label for="bericht">Bericht</label>
+                <!-- Label connected to the message field -->
+
+                <textarea
+                    id="bericht"
+                    name="bericht"
+                    required
+                    minlength="10"
+                    aria-describedby="bericht-error"
+                    aria-invalid="false"
+                ></textarea>
+                <!-- Creates a larger text field for the user's message -->
+                <!-- required means the field cannot be empty -->
+                <!-- minlength requires at least 10 characters -->
+
+                <span id="bericht-error" role="alert"></span>
+                <!-- Shows an accessible error message for the message field -->
+
+
+                <button type="submit">Versturen</button>
+                <!-- Submits the form when clicked -->
+
+
+                <p id="form-status" aria-live="polite"></p>
+                <!-- Shows a general form status such as a success message -->
+                <!-- aria-live allows screen readers to announce changes automatically -->
+
+
+            </form> <!-- Ends the contact form -->
+
+
+        </section> <!-- Ends the contact section -->
+
+
+    </main> <!-- Ends the main content -->
+
+
+    <footer> <!-- Contains the footer information -->
+
+        <p>&copy; 2026 Serzat Karaman. All rights reserved.</p>
+        <!-- Copyright text -->
+
+    </footer> <!-- Ends the footer -->
+
+
+    <script src="contact.js"></script>
+    <!-- Connects the external JavaScript file used for form validation -->
+
+
+</body> <!-- Ends all visible page content -->
+
+
+</html> <!-- Ends the HTML document -->
