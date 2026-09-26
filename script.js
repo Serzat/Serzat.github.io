@@ -161,10 +161,12 @@ function sorteerOudsteEerst() {
 
 
 // Selects the "Nieuwste eerst" button from the HTML
+const zoekVeld = document.querySelector("#project-zoeken");
 const nieuwsteKnop = document.querySelector("#nieuwste-eerst");
 
 // Selects the "Oudste eerst" button from the HTML
 const oudsteKnop = document.querySelector("#oudste-eerst");
+zoekVeld.addEventListener("input", zoekProjecten);
 
 
 // Runs sorteerNieuwsteEerst when the user clicks the newest button
@@ -172,6 +174,16 @@ nieuwsteKnop.addEventListener("click", sorteerNieuwsteEerst);
 
 // Runs sorteerOudsteEerst when the user clicks the oldest button
 oudsteKnop.addEventListener("click", sorteerOudsteEerst);
+
+function zoekProjecten() {
+
+    const zoekTekst = zoekVeld.value.toLowerCase();
+
+    const gefilterdeProjecten = projecten.filter((project) => {
+        return project.naam.toLowerCase().includes(zoekTekst);
+    });
+        renderProjecten(gefilterdeProjecten);
+}
 
 
 // Displays the projects when the page loads for the first time
