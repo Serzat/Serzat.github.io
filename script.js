@@ -180,9 +180,19 @@ function zoekProjecten() {
     const zoekTekst = zoekVeld.value.toLowerCase();
 
     const gefilterdeProjecten = projecten.filter((project) => {
-        return project.naam.toLowerCase().includes(zoekTekst);
+
+        const naamMatch = project.naam.toLowerCase().includes(zoekTekst);
+
+        const beschrijvingMatch = project.beschrijving.toLowerCase().includes(zoekTekst);
+
+        const techniekenMatch = project.technieken.some((techniek) =>
+            techniek.toLowerCase().includes(zoekTekst)
+        );
+
+        return naamMatch || beschrijvingMatch || techniekenMatch;
     });
-        renderProjecten(gefilterdeProjecten);
+
+    renderProjecten(gefilterdeProjecten);
 }
 
 
