@@ -36,6 +36,8 @@ header h1 {
 .profile-photo {
     width: 90px;
     height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 /* Navigatie */
