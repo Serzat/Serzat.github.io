@@ -14,7 +14,7 @@ async function haalGithubDataOp() {
     try {
 
         // Sends a GET request to the GitHub API
-        const response = await fetch("https://api.github.com/users/Serzat");
+        const response = await fetch("https://api.githubxxx.com/users/Serzat");
 
         // Converts the JSON response into a JavaScript object
         const data = await response.json();
