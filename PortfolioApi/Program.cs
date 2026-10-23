@@ -1,16 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using PortfolioApi.Data;
+using PortfolioApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Services registreren
 builder.Services.AddControllers();
+builder.Services.AddScoped<IProjectService, ProjectService>();
+
 builder.Services.AddDbContext<PortfolioDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("PortfolioDb")));
+
 builder.Services.AddSwaggerGen();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
