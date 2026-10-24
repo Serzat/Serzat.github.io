@@ -31,10 +31,22 @@ public class ProjectService : IProjectService
             .ToListAsync();
     }
 
-    public Task<ProjectResponse?> GetByIdAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<ProjectResponse?> GetByIdAsync(int id)
+{
+    return await _db.Projecten
+        .AsNoTracking()
+        .Where(p => p.Id == id)
+        .Select(p => new ProjectResponse
+        {
+            Id = p.Id,
+            Titel = p.Titel,
+            Beschrijving = p.Beschrijving,
+            Categorie = p.Categorie,
+            GitHubUrl = p.GitHubUrl,
+            Datum = p.Datum
+        })
+        .FirstOrDefaultAsync();
+}
 
     public async Task<ProjectResponse> CreateAsync(CreateProjectRequest request)
 {

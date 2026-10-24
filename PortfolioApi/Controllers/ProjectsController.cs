@@ -31,4 +31,17 @@ public async Task<ActionResult<ProjectResponse>> CreateProject(
 
     return Created($"/api/projects/{nieuwProject.Id}", nieuwProject);
 }
+
+[HttpGet("{id:int}")]
+public async Task<ActionResult<ProjectResponse>> GetProject(int id)
+{
+    var project = await _projectService.GetByIdAsync(id);
+
+    if (project == null)
+    {
+        return NotFound();
+    }
+
+    return Ok(project);
+}
 }
