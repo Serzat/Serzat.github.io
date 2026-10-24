@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Services registreren
 builder.Services.AddControllers();
 builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IBlogpostService, BlogpostService>();
 
 builder.Services.AddDbContext<PortfolioDbContext>(options =>
     options.UseSqlServer(

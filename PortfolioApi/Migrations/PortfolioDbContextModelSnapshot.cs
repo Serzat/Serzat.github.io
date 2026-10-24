@@ -30,11 +30,11 @@ namespace PortfolioApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Inhooud")
+                    b.Property<string>("Inhoud")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("PublicatieDatum")
+                    b.Property<DateTime>("Publicatiedatum")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Titel")
