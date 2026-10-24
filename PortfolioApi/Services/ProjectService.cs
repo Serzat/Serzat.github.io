@@ -96,8 +96,22 @@ public async Task<bool> UpdateAsync(int id, UpdateProjectRequest request)
 }
 
 
-    public Task<bool> DeleteAsync(int id)
+    
+public async Task<bool> DeleteAsync(int id)
+{
+    var project = await _db.Projecten
+        .FirstOrDefaultAsync(p => p.Id == id);
+
+    if (project == null)
     {
-        throw new NotImplementedException();
+        return false;
     }
+
+    _db.Projecten.Remove(project);
+
+    await _db.SaveChangesAsync();
+
+    return true;
+}
+
 }

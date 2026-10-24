@@ -60,4 +60,19 @@ public async Task<IActionResult> UpdateProject(
     return NoContent();
 }
 
+
+[HttpDelete("{id:int}")]
+public async Task<IActionResult> DeleteProject(int id)
+{
+    var deleted = await _projectService.DeleteAsync(id);
+
+    if (!deleted)
+    {
+        return NotFound();
+    }
+
+    return NoContent();
+}
+
+
 }
