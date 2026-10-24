@@ -10,7 +10,7 @@ public class Project
 
     public string Categorie { get; set; } = string.Empty;
 
-    public string GithubUrl { get; set; } = string.Empty;
+    public string GitHubUrl { get; set; } = string.Empty;
 
     public DateTime Datum { get; set; }
 }

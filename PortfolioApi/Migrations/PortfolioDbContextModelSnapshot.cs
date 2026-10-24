@@ -65,7 +65,7 @@ namespace PortfolioApi.Migrations
                     b.Property<DateTime>("Datum")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("GithubUrl")
+                    b.Property<string>("GitHubUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
