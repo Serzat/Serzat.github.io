@@ -44,4 +44,20 @@ public async Task<ActionResult<ProjectResponse>> GetProject(int id)
 
     return Ok(project);
 }
+
+
+[HttpPut("{id:int}")]
+public async Task<IActionResult> UpdateProject(
+    int id, [FromBody] UpdateProjectRequest request)
+{
+    var updated = await _projectService.UpdateAsync(id, request);
+
+    if (!updated)
+    {
+        return NotFound();
+    }
+
+    return NoContent();
+}
+
 }

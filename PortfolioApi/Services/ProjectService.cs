@@ -73,10 +73,28 @@ public class ProjectService : IProjectService
     };
 }
 
-    public Task<bool> UpdateAsync(int id, UpdateProjectRequest request)
+    
+public async Task<bool> UpdateAsync(int id, UpdateProjectRequest request)
+{
+    var project = await _db.Projecten
+        .FirstOrDefaultAsync(p => p.Id == id);
+
+    if (project == null)
     {
-        throw new NotImplementedException();
+        return false;
     }
+
+    project.Titel = request.Titel;
+    project.Beschrijving = request.Beschrijving;
+    project.Categorie = request.Categorie;
+    project.GitHubUrl = request.GitHubUrl;
+    project.Datum = request.Datum;
+
+    await _db.SaveChangesAsync();
+
+    return true;
+}
+
 
     public Task<bool> DeleteAsync(int id)
     {
