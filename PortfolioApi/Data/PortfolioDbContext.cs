@@ -13,6 +13,7 @@ public class PortfolioDbContext : DbContext
         // Passes the configuration options to the base DbContext class.
         : base(options)
     {
+    }
         
 
     // Provides access to Project records in the database.
