@@ -1,52 +1,73 @@
 
-[HttpPost("register")]
-public async Task<IActionResult> Register(
-    [FromBody] RegisterRequest request)
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using PortfolioApi.DTOs;
+using PortfolioApi.Models;
+
+namespace PortfolioApi.Controllers;
+
+[ApiController]
+[Route("api/auth")]
+public class AuthController : ControllerBase
 {
-    // Controleer of het e-mailadres al bestaat.
-    var bestaandeGebruiker =
-        await _userManager.FindByEmailAsync(request.Email);
+    private readonly UserManager<User> _userManager;
 
-    if (bestaandeGebruiker != null)
+    // Ontvangt UserManager via Dependency Injection.
+    public AuthController(UserManager<User> userManager)
     {
-        return BadRequest("Dit e-mailadres is al geregistreerd.");
+        _userManager = userManager;
     }
 
-    // Maak een nieuwe gebruiker aan.
-    var gebruiker = new User
+    // Registreert een nieuwe gebruiker met de rol Gast.
+    [HttpPost("register")]
+    public async Task<IActionResult> Register(
+        [FromBody] RegisterRequest request)
     {
-        UserName = request.Email,
-        Email = request.Email
-    };
+        // Controleer of het e-mailadres al bestaat.
+        var bestaandeGebruiker =
+            await _userManager.FindByEmailAsync(request.Email);
 
-    // Sla de gebruiker op met een gehasht wachtwoord.
-    var resultaat = await _userManager.CreateAsync(
-        gebruiker, request.Password);
+        if (bestaandeGebruiker != null)
+        {
+            return BadRequest("Dit e-mailadres is al geregistreerd.");
+        }
 
-    // Geef de validatiefouten terug als registratie mislukt.
-    if (!resultaat.Succeeded)
-    {
-        return BadRequest(resultaat.Errors);
+        // Maak een nieuwe gebruiker aan.
+        var gebruiker = new User
+        {
+            UserName = request.Email,
+            Email = request.Email
+        };
+
+        // Sla de gebruiker op met een gehasht wachtwoord.
+        var resultaat = await _userManager.CreateAsync(
+            gebruiker, request.Password);
+
+        // Geef validatiefouten terug als registratie mislukt.
+        if (!resultaat.Succeeded)
+        {
+            return BadRequest(resultaat.Errors);
+        }
+
+        // Geef de nieuwe gebruiker de rol Gast.
+        var rolResultaat =
+            await _userManager.AddToRoleAsync(gebruiker, "Gast");
+
+        if (!rolResultaat.Succeeded)
+        {
+            // Verwijder de gebruiker als de roltoekenning mislukt.
+            await _userManager.DeleteAsync(gebruiker);
+
+            return StatusCode(500,
+                "Registratie mislukt bij het toekennen van de rol.");
+        }
+
+        // Geef een bevestiging na succesvolle registratie.
+        return Ok(new
+        {
+            Message = "Gebruiker succesvol geregistreerd.",
+            Email = gebruiker.Email,
+            Rol = "Gast"
+        });
     }
-
-    // Geef elke nieuwe gebruiker automatisch de rol Gast.
-    var rolResultaat =
-        await _userManager.AddToRoleAsync(gebruiker, "Gast");
-
-    if (!rolResultaat.Succeeded)
-    {
-        // Verwijder de gebruiker als de roltoekenning mislukt.
-        await _userManager.DeleteAsync(gebruiker);
-
-        return StatusCode(500,
-            "Registratie mislukt bij het toekennen van de rol.");
-    }
-
-    // Registratie is geslaagd.
-    return Ok(new
-    {
-        Message = "Gebruiker succesvol geregistreerd.",
-        Email = gebruiker.Email,
-        Rol = "Gast"
-    });
 }
