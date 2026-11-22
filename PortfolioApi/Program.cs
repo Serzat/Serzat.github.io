@@ -1,4 +1,5 @@
-
+using Microsoft.AspNetCore.Identity;
+using PortfolioApi.Models;
 using Microsoft.EntityFrameworkCore; 
 using PortfolioApi.Data; 
 using PortfolioApi.Services; 
@@ -21,6 +22,19 @@ builder.Services.AddDbContext<PortfolioDbContext>(options =>
     options.UseSqlServer(
         // Reads the database connection string from configuration.
         builder.Configuration.GetConnectionString("PortfolioDb")));
+
+        // Identity configureren voor gebruikers en rollen.
+builder.Services.AddIdentityApiEndpoints<User>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<PortfolioDbContext>();
+
+// Authenticatie configureren.
+builder.Services.AddAuthentication();
+
+// Alleen Editor en Admin mogen gegevens wijzigen.
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("CanManageContent", policy =>
+        policy.RequireRole("Editor", "Admin"));
 
 // Registers Swagger to generate API documentation.
 builder.Services.AddSwaggerGen();
@@ -47,11 +61,17 @@ if (app.Environment.IsDevelopment())
 // Redirects HTTP requests to HTTPS when HTTPS is configured.
 app.UseHttpsRedirection();
 
+// Controleert of de gebruiker is ingelogd.
+app.UseAuthentication();
+
 // Adds the authorization middleware.
 app.UseAuthorization();
 
 // Connects the controller routes to the application.
 app.MapControllers();
+
+// Maak de standaardrollen aan bij het opstarten.
+await RoleSeeder.SeedAsync(app.Services);
 
 // Starts the application and listens for HTTP requests.
 app.Run();

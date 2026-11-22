@@ -1,24 +1,28 @@
 
-using Microsoft.EntityFrameworkCore; 
-using PortfolioApi.Models; 
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using PortfolioApi.Models;
 
-// Defines the namespace for the data layer.
 namespace PortfolioApi.Data;
 
-// Creates our database context by inheriting from DbContext.
-public class PortfolioDbContext : DbContext
+// Databasecontext voor projecten, blogposts en gebruikers.
+public class PortfolioDbContext : IdentityDbContext<User>
 {
-    // Constructor that receives database configuration through Dependency Injection.
+    // Ontvangt de databaseconfiguratie via Dependency Injection.
     public PortfolioDbContext(DbContextOptions<PortfolioDbContext> options)
-        // Passes the configuration options to the base DbContext class.
         : base(options)
     {
     }
-        
 
-    // Provides access to Project records in the database.
+    // Tabel voor projecten.
     public DbSet<Project> Projecten => Set<Project>();
 
-    // Provides access to Blogpost records in the database.
+    // Tabel voor blogposts.
     public DbSet<Blogpost> Blogposts => Set<Blogpost>();
+
+    // Configureert de Identity-tabellen en bestaande modellen.
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+    }
 }
