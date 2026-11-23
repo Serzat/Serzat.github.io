@@ -1,4 +1,6 @@
+
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using PortfolioApi.DTOs;
 using PortfolioApi.Services;
 
@@ -15,6 +17,7 @@ public class ProjectsController : ControllerBase
         _projectService = projectService;
     }
 
+    // Iedereen mag alle projecten bekijken.
     [HttpGet]
     public async Task<ActionResult<List<ProjectResponse>>> GetProjects()
     {
@@ -23,56 +26,59 @@ public class ProjectsController : ControllerBase
         return Ok(projecten);
     }
 
+    // Alleen Editor en Admin mogen projecten aanmaken.
+    [Authorize(Policy = "CanManageContent")]
     [HttpPost]
-public async Task<ActionResult<ProjectResponse>> CreateProject(
-    [FromBody] CreateProjectRequest request)
-{
-    var nieuwProject = await _projectService.CreateAsync(request);
-
-    return Created($"/api/projects/{nieuwProject.Id}", nieuwProject);
-}
-
-[HttpGet("{id:int}")]
-public async Task<ActionResult<ProjectResponse>> GetProject(int id)
-{
-    var project = await _projectService.GetByIdAsync(id);
-
-    if (project == null)
+    public async Task<ActionResult<ProjectResponse>> CreateProject(
+        [FromBody] CreateProjectRequest request)
     {
-        return NotFound();
+        var nieuwProject = await _projectService.CreateAsync(request);
+
+        return Created($"/api/projects/{nieuwProject.Id}", nieuwProject);
     }
 
-    return Ok(project);
-}
-
-
-[HttpPut("{id:int}")]
-public async Task<IActionResult> UpdateProject(
-    int id, [FromBody] UpdateProjectRequest request)
-{
-    var updated = await _projectService.UpdateAsync(id, request);
-
-    if (!updated)
+    // Iedereen mag een project opvragen via het ID.
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<ProjectResponse>> GetProject(int id)
     {
-        return NotFound();
+        var project = await _projectService.GetByIdAsync(id);
+
+        if (project == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(project);
     }
 
-    return NoContent();
-}
-
-
-[HttpDelete("{id:int}")]
-public async Task<IActionResult> DeleteProject(int id)
-{
-    var deleted = await _projectService.DeleteAsync(id);
-
-    if (!deleted)
+    // Alleen Editor en Admin mogen projecten wijzigen.
+    [Authorize(Policy = "CanManageContent")]
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> UpdateProject(
+        int id, [FromBody] UpdateProjectRequest request)
     {
-        return NotFound();
+        var updated = await _projectService.UpdateAsync(id, request);
+
+        if (!updated)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
     }
 
-    return NoContent();
-}
+    // Alleen Editor en Admin mogen projecten verwijderen.
+    [Authorize(Policy = "CanManageContent")]
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteProject(int id)
+    {
+        var deleted = await _projectService.DeleteAsync(id);
 
+        if (!deleted)
+        {
+            return NotFound();
+        }
 
+        return NoContent();
+    }
 }

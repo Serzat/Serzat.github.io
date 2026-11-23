@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using PortfolioApi.DTOs;
 using PortfolioApi.Services;
 
@@ -11,12 +12,13 @@ public class BlogpostsController : ControllerBase
 {
     private readonly IBlogpostService _blogpostService;
 
+    // Ontvangt de blogpostservice via Dependency Injection.
     public BlogpostsController(IBlogpostService blogpostService)
     {
         _blogpostService = blogpostService;
     }
 
-    // Alle blogposts ophalen
+    // Iedereen mag alle blogposts bekijken.
     [HttpGet]
     public async Task<ActionResult<List<BlogpostResponse>>> GetBlogposts()
     {
@@ -25,7 +27,7 @@ public class BlogpostsController : ControllerBase
         return Ok(blogposts);
     }
 
-    // Een blogpost ophalen op basis van ID
+    // Iedereen mag een blogpost ophalen via het ID.
     [HttpGet("{id:int}")]
     public async Task<ActionResult<BlogpostResponse>> GetBlogpost(int id)
     {
@@ -39,7 +41,8 @@ public class BlogpostsController : ControllerBase
         return Ok(blogpost);
     }
 
-    // Een nieuwe blogpost aanmaken
+    // Alleen Editor en Admin mogen blogposts aanmaken.
+    [Authorize(Policy = "CanManageContent")]
     [HttpPost]
     public async Task<ActionResult<BlogpostResponse>> CreateBlogpost(
         [FromBody] CreateBlogpostRequest request)
@@ -52,7 +55,8 @@ public class BlogpostsController : ControllerBase
             nieuwBlogpost);
     }
 
-    // Een bestaande blogpost wijzigen
+    // Alleen Editor en Admin mogen blogposts wijzigen.
+    [Authorize(Policy = "CanManageContent")]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> UpdateBlogpost(
         int id, [FromBody] UpdateBlogpostRequest request)
@@ -67,7 +71,8 @@ public class BlogpostsController : ControllerBase
         return NoContent();
     }
 
-    // Een blogpost verwijderen
+    // Alleen Editor en Admin mogen blogposts verwijderen.
+    [Authorize(Policy = "CanManageContent")]
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteBlogpost(int id)
     {
