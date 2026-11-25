@@ -75,3 +75,6 @@ await RoleSeeder.SeedAsync(app.Services);
 
 // Starts the application and listens for HTTP requests.
 app.Run();
+
+// Maakt Program toegankelijk voor HTTP-integratietests.
+public partial class Program { }
